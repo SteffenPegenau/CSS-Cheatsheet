@@ -98,6 +98,7 @@
 }
 
 \newcommand{\platz}{\vspace{-4.5ex}}
+\def \breiteErsteSpalte {7cm}
 
 %%% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,7 +180,7 @@
   }
   ;
   \draw
-  (0,0) node[anchor=north west,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  (0,0) node[anchor=north west,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   (linksoben)
   {
    \platz
@@ -207,7 +208,7 @@
     $m_i = D(\pi^{-1},c_i)\oplus c_{i-1} = (P_{\pi^{-1}} \cdot c_i) \oplus c_{i-1}$\\
     mit $\pi^{-1} = \pi'$ (transponiert)
   }
-  ++(0,-5.7cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-5.7cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{CFB-Mode}
@@ -216,7 +217,7 @@
     Entschlüsselung: \\
     $m_i = E(\pi, c_{i-1}) \oplus c_i$
   }
-  ++(0,-2.5cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{CTR-Mode}
@@ -226,7 +227,7 @@
     Entschlüsselung: \\
     $ m_i = E(\pi, IV + (i-1)) \oplus c_i $
   }
-  ++(0, -2.9cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0, -2.9cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsection*{Hashfunktion}
@@ -234,20 +235,20 @@
     Speicherung von Passwörtern, Dateivalidierung
     
   }
-  ++(0, -2.1cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0, -2.1cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsection*{Message Authentication Code (MAC)}
     Hashfunktion mit geheimen Schlüssel zur Integritätsprüfung von Nachrichten. Ermöglicht 
     kein non-repudiation, daher nicht als digitale Unterschrift geeignet.
   }
-  ++(0, -2.1cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0, -2.1cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsection*{Kollisionsresistenz}
     Es ist schwierig zwei Werte $x$ und $y$ mit $H(x) = H(y)$ zu bestimmen
   }
-  ++(0, -1.7cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0, -1.7cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsection*{Schwache Kollisionsresistenz}
@@ -256,9 +257,10 @@
 % Als Visualisierung brauchbar?
 ;
   \draw (linksoben.north west)
-  ++(8cm,0) node[anchor=north west,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(7.5cm,0) node[anchor=north west,text width=9cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   (zweite-spalte)
   {
+    \platz
     \subsubsection*{Shamir Secret-Sharing}
     $t$ von $n$ Stakeholdern sind nötig, um Geheimnis $k = f(0)$ zu entschlüsseln. Außerdem gegeben:
     Primzahl $p>n,k$ und vom Dealer gewähltes Polynom f(x) vom Grad $t-1$ \\
@@ -267,13 +269,43 @@
     $k = f(0) = \sum s_i \cdot l_i(0)$ \quad
     $l_i(0) := \left[\prod_{i=1,j\neq i} \frac{j}{j - i}\right] \mod p$
   }
-  ++(0,-4.1cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-3.5cm) node[below right,text width=9cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Branches}
+    \platz
+    \subsubsection*{Erweiterter Euklidischer Algorithmus (EEA)}
+    $ggT(a,b)$ und $x\cdot a + y \cdot b = d$ \\
+    \begin{scriptsize}
+    \begin{tabular}{|p{2ex}|p{14ex}|p{12ex}|p{12ex}|p{2ex}|p{1ex}|p{2ex}|p{1ex}|p{1ex}|p{1ex}|}
+    %\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline 
+    % $q=a/b$ & $r=a\mod b$ & $x=x_2 - qx_1$ & $y=y_2-qy_1$ & $a=b$ & $b=r$ & $x_2 = x_1$ & $x_1=x$ & $y_2=y_1$ & $y_1=y$ \\
+     $q$ & $r$ & $x$ & $y$ & $a$ & $b$ & $x_2$ & $x_1$ & $y_2$ & $y_1$ \\
+    \hline
+    X & X & X & X & $a$ & $b$ & 1 & 0 & 0 & 1\\
+    \hline
+    $a/b$ & $a\mod b$ & $x_2-qx_1$ & $y_2-qy_1$ & $b$ & $r$ & $x_1$ & $x$ & $y_1$ & $y$ \\
+    \hline
+    \multicolumn{10}{|c|}{$\cdots$} \\
+    \hline
+    $?$ & $0$ & $?$ & $?$ & \textbf{=d} & \textbf{0} & \textbf{=x} & ? & \textbf{=y} & $?$ \\
+    \hline
+    \end{tabular}
+    \end{scriptsize}
+
   }
-  ++(0,-3.3cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.7cm) node[below right,text width=9cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Merge-Konflikte beheben}
+    \platz
+    \subsubsection*{Inverses Element $(a)^{-1}$ berechnen}
+    Es gilt: $\left[ a\cdot (a)^{-1} \right] \mod k = 1$ \\
+    $ggT(a,k)$ mit EEA durchführen. \\
+    $
+    (a)^{-1} = 
+      \begin{cases} 
+      (x+k) \mod k & \text{wenn } x < 0 \\
+      x \mod k       & \text{sonst}
+      \end{cases}
+    $
   }
   ++(0,-3.4cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
