@@ -96,6 +96,9 @@
   \piccaption{#2}
   \parpic[#3]{\includegraphics[width=#4]{#1}}
 }
+
+\newcommand{\platz}{\vspace{-4.5ex}}
+
 %%% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -151,6 +154,12 @@
 %%% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+% Platz links, über und unter Überschriften ändern
+%\usepackage{titlesec}
+%\titlespacing*{\subsection}{0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
+
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,154 +167,121 @@
 
 
 \begin{tikzpicture}
-  \draw (0,1) node[anchor=north west,font=\Huge\bf\fontfamily{phv}\selectfont]{Git -- der Spickzettel}
+  \draw (0,1) node[anchor=north west,font=\Huge\bf\fontfamily{phv}\selectfont]{Cheatsheet: Computersystemsicherheit}
   (.1cm,.3cm) -- (28.2cm,.3cm)
   ([xshift=1mm]23.7cm,.7cm)
   node[font=\footnotesize,color=black!85,anchor=north east]{
-    \copyright{} 2010 V.\,Hänel, J.\,Plenz
+    \copyright{} 2016 Steffen Pegenau
   }
   ++(0,.3cm)
   node[font=\footnotesize,color=black!85,anchor=north east]{
     Version vom \today
-  }
-  ([xshift=1mm]23.7cm,.7cm)
-  node[font=\footnotesize,color=black!85,anchor=north west]{
-    Creative-Commons-Lizenz 3.0 (By,Nc,Sa)
-  }
-  ++(0,.3cm)
-  node[font=\footnotesize,color=black!85,anchor=north west]{
-    https://github.com/esc/git-cheatsheet-de
   }
   ;
   \draw
   (0,0) node[anchor=north west,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   (linksoben)
   {
-    \subsubsection*{Repositories klonen oder erstellen}
-    \begin{tabular}{ll}
-    \texttt{git clone git://}\ldots & Klonen (Git-Protokoll)\\
-    \texttt{git clone ssh://}\ldots & Klonen (SSH)
-    \vspace*{.2cm}\\
-    \texttt{cd \emph{projekt}} & \\
-    \texttt{git init} & Neues Repository \\
-    \texttt{git add .} & erstellen\\
-    \texttt{git commit} &
-    \end{tabular}
+   \platz
+   \subsubsection*{CBC-Mode}
+    Nachricht in n Teile gliedern. \\
+    Schlüssel $\Rightarrow$ Permutationsmatrix mit Einheitsvektoren\\
+    $\pi = \left(
+    \begin{matrix}
+     1 & \cdots & n \\
+     a & \cdots & z \\
+    \end{matrix} \right)
+    \Rightarrow
+    P_\pi = \left(
+    \begin{matrix}
+    e_a \\
+    \vdots \\
+    e_z \\
+    \end{matrix}
+    \right) $ \\
+    Verschlüsselung: \\
+    $c_0 = IV$ \\
+    $c_i = E(\pi, c_{i-1} \oplus m_i) = P_\pi \cdot (c_{i-1} \oplus m_i)$\\
+    $\Rightarrow \quad c_1, \dots, c_n$ \\
+    Entschlüsselung: \\
+    $m_i = D(\pi^{-1},c_i)\oplus c_{i-1} = (P_{\pi^{-1}} \cdot c_i) \oplus c_{i-1}$\\
+    mit $\pi^{-1} = \pi'$ (transponiert)
   }
-  ++(0,-3.6cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-5.7cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Änderungen untersuchen}
-    \hspace{1mm}
-    \begin{minipage}{7.5cm}
-    Jedes der Kommandos akzeptiert optional als Argument eine
-    \emph{Referenz} auf einen oder mehrere Commits (siehe zweite
-    Spalte).
-    \end{minipage}
-    \begin{tabular}{ll}
-    \texttt{git log} & Zusammenfassung der Änderungen\\
-    \texttt{git show} & Detaillierte Ansicht eines Commits\\
-    \texttt{git diff} & Unterschiede mit \texttt{diff} anzeigen\\
-    \texttt{git blame} & Wer hat welche Zeile geändert?\\
-    \texttt{gitk -{}-all} & Grafische Ansicht\\
-    \texttt{tig} & Curses-Frontend für Git
-    \end{tabular}
+    \platz
+    \subsubsection*{CFB-Mode}
+    Verschlüsselung: \\
+    $c_i = E(\pi, c_{i-1} )\oplus m_i$\\
+    Entschlüsselung: \\
+    $m_i = E(\pi, c_{i-1}) \oplus c_i$
   }
-  ++(0,-4.6cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.5cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Nächsten Commit vorbereiten}
-    \begin{tabular}{ll}
-    \texttt{git add} & Datei hinzufügen\\
-    \texttt{git add -p} & Teile einer Datei hinzufügen\\
-    \texttt{git rm} & Datei löschen\\
-    \texttt{git mv} & Datei verschieben\\
-    \texttt{git commit} & Commit erstellen\\
-    \ldots\quad\texttt{-m '\emph{msg}'} & mit Beschreibung \emph{msg}\\
-    \ldots\quad\texttt{-{}-amend} & Letzten Commit verbessern\\
-    \end{tabular}
+    \platz
+    \subsubsection*{CTR-Mode}
+    Verschlüsselung: \\
+    $ c_i = E(\pi, IV + (i-1)) \oplus m_i $ \\
+    (binäre Addition, Überträge verwerfen) \\
+    Entschlüsselung: \\
+    $ m_i = E(\pi, IV + (i-1)) \oplus c_i $
+  }
+  ++(0, -2.9cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Hashfunktion}
+    Nicht injektive Abbildung, die Urbildbildbereich auf erheblich kleineren Bildbereich abbildet.\\
+    Speicherung von Passwörtern, Dateivalidierung
+    
+  }
+  ++(0, -2.1cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Message Authentication Code (MAC)}
+    Hashfunktion mit geheimen Schlüssel zur Integritätsprüfung von Nachrichten. Ermöglicht 
+    kein non-repudiation, daher nicht als digitale Unterschrift geeignet.
+  }
+  ++(0, -2.1cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Kollisionsresistenz}
+    Es ist schwierig zwei Werte $x$ und $y$ mit $H(x) = H(y)$ zu bestimmen
+  }
+  ++(0, -1.7cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Schwache Kollisionsresistenz}
+    Es ist schwierig zu geg. Wert $x$ ein $x'$ mit $H(x) = H(x')$ zu bestimmen
   }
 % Als Visualisierung brauchbar?
-++(1.4cm,-4.3cm)     node[rounded corners=2pt,fill=gray!25,minimum height=1cm] (w) {Working Directory}
-++(1.7,0)   node[single arrow,fill=green!50] {add}
-++(1.1,0)   node[rounded corners=2pt,fill=gray!25,minimum height=1cm] (i) {Index}
-++(1.1,0)   node[single arrow,fill=green!50] {commit}
-++(1.7,0)   node[rounded corners=2pt,fill=gray!25,minimum height=1cm] (r) {Repository}
 ;
-\draw[->,thick] (r.south) .. controls +(0,-1.2) and +(0,-1.2) .. node[fill=green!50,above=3pt]{reset} (i.south);
-\draw[->,thick] (r.south) .. controls +(0,-1.8) and +(0,-1.8) .. node[fill=green!50,below=1pt](co){checkout} (w.south);
-  \draw (co)
-  ++(-4.2cm,-0.8cm) node[below right,text width=7.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \subsubsection*{Index vs. Working Directory}
-    \begin{tabular}{ll}
-    \texttt{git diff -{}-cached} & Änderung zwischen Index \\
-                                 & und Repository (\texttt{HEAD})\\
-    \texttt{git rm -{}-cached} & Datei nicht mehr beachten\\
-    \texttt{git reset \emph{ref}} & Den Index auf \emph{ref} setzen;\\
-                                  & \emph{Working Dir.} unverändert\\
-    \texttt{git checkout} & Index und \emph{WD} ändern\\
-    \ldots\quad\texttt{-b \emph{branch}} & Zu neuem \emph{branch} wechseln\\
-    \end{tabular}
-  };
-
   \draw (linksoben.north west)
   ++(8cm,0) node[anchor=north west,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   (zweite-spalte)
   {
-    \subsubsection*{Referenzen}
-    \begin{tabular}{ll}
-    \texttt{HEAD} & Letzter Commit\\
-    \texttt{HEAD$^\wedge$} & Vorletzter Commit\\
-    \texttt{HEAD\texttildelow\emph{n}} & \emph{n}-ter letzter Commit\\
-    \texttt{master} & Branch-Name\\
-    \texttt{v2.6.17} & Tag-Name (z.\,B. für Versionierung)\\
-    \texttt{a..b} & Alle Commits zwischen \texttt{a} und \texttt{b}\\
-    \texttt{master..} & Commits, die noch nicht in \texttt{master} sind\\
-    \texttt{44ac95d}\ldots & Objekt-Referenz (Commit, Tree, etc.)\\
-    \end{tabular}
+    \subsubsection*{Shamir Secret-Sharing}
+    $t$ von $n$ Stakeholdern sind nötig, um Geheimnis $k = f(0)$ zu entschlüsseln. Außerdem gegeben:
+    Primzahl $p>n,k$ und vom Dealer gewähltes Polynom f(x) vom Grad $t-1$ \\
+    Schlüssel $s_i = f(i) \mod p$ \\
+    Secret Recovery: \\
+    $k = f(0) = \sum s_i \cdot l_i(0)$ \quad
+    $l_i(0) := \left[\prod_{i=1,j\neq i} \frac{j}{j - i}\right] \mod p$
   }
   ++(0,-4.1cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Branches}
-    \begin{tabular}{ll}
-    \texttt{git branch \emph{name}} & Branch \emph{name} erstellen\\
-    \texttt{git checkout \emph{name}} & Branch \emph{name} auschecken\\
-    \texttt{git merge \emph{feature}} & \emph{feature} integrieren\\
-    \texttt{git rebase \emph{basis}} & Aktuellen Branch auf neue \\
-                                     & \emph{basis} aufbauen\\
-    \ldots\;\texttt{-{}-interactive} & Commits ordnen und anpassen\\
-    \end{tabular}
   }
   ++(0,-3.3cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Merge-Konflikte beheben}
-    \begin{tabular}{ll}
-    \texttt{git diff -{}-ours} & Unterschied zu \emph{unserer}\\
-    \ldots\quad\texttt{-{}-theirs} & \ldots{} und \emph{deren} Version\\
-    \texttt{gitk -{}-merge} & Relevante Commits untersuchen\\
-    \texttt{git mergetool} & Three-Way-Merge\\
-    \texttt{git add}, \texttt{commit} \ldots & Änderungen aufnehmen\\
-    \texttt{git reset -{}-hard} & Merge abbrechen\\
-    \end{tabular}
   }
   ++(0,-3.4cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Remote Repositories}
-    \begin{tabular}{ll}
-    \texttt{git remote} & Remote Repositories verwalten \\
-    \texttt{git fetch} \ldots & Neue Commits herunterladen \\
-    \texttt{git pull} \ldots & \ldots{} und gleich mergen \\
-    \end{tabular}
   }
   ++(0,-2.3cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Änderungen veröffentlichen}
-    \begin{tabular}{ll}
-    \texttt{git push} & Commits hochladen \\
-    \texttt{git tag} & Commit markieren (z.\,B.\\
-                     & für eine neue Version)\\
-    \texttt{git format-patch} & Änderungen im Patch-Format\\
-                              & exportieren, für E-Mail-Versand \\
-    \end{tabular}
   }
   % Eigene Anmerkungen
   [anchor=north west,draw=gray,dashed,rounded corners] ++(0,-3.1cm) rectangle +(20.3cm,-2.7cm)
@@ -315,50 +291,10 @@
   ++(9.0cm,0) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Weitere praktische Kommandos}
-    \begin{tabular}{ll}
-    \texttt{git grep \emph{expr}} & In allen Dateien nach \emph{expr} suchen\\
-    \texttt{git stash} & Änderungen temporär in den Hintergrund schieben\\
-    \texttt{git clean} & Nicht von Git verwaltete Dateien löschen\\
-    \texttt{git bisect} & Commit finden, der ein bestimmtes Problem verursacht\\
-    \texttt{git archive} & Tar-Ball des Projektes erzeugen\\
-    \texttt{git shortlog} & Anzahl der Commits zählen (per \texttt{-s -n})\\
-    \end{tabular}
   }
   ++(0,-3.5cm) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Beispielhafte Programmaufrufe}
-    \textbf{Einen leeren Commit erstellen}, praktisch z.\,B. für den
-      \emph{initial commit}:\\
-      \texttt{\$ git commit -{}-allow-empty -m 'leer'}\\[.8em]
-
-    Herausfinden, durch welchen Commit eine \textbf{Datei gelöscht} wurde:\\
-      \texttt{\$ git log -{}-diff-filter=D \emph{datei}}\\[.7em]
-
-    \textbf{Einen Patch} der Änderungen erstellen, die zwischen dem Tag \texttt{v1.6} und
-    dem Branch \emph{neues-feature} bestehen:\\
-    \texttt{\$ git diff v1.6..neues-feature > meine-aenderungen.patch}\\[.8em]
-
-    \textbf{ASCII-Baumdiagramm} aller Commits anzeigen:\\
-    \texttt{\$ git log -{}-graph -{}-oneline -{}-decorate -{}-all}\\[.8em]
-
-    \textbf{Alle unnötigen Dateien löschen}, Änderungen verwerfen und
-    mit einer "`sauberen"' Version von \emph{master} starten:
-    \begin{verbatim}$ git checkout -f master
-$ git clean -dfx\end{verbatim}
-
-    \textbf{Throw-Away-Integration:} Testen, ob ein Merge
-    funktionieren würde, ohne tatsächlich \texttt{master} zu ändern:
-    \begin{verbatim}$ git checkout -b integrate master
-$ git merge feature\end{verbatim}
-    \textbf{Den letzten Commit in zwei kleinere aufteilen} (siehe auch
-    \texttt{man git-rebase}):
-    \begin{verbatim}$ git rebase -i HEAD^
-(pick durch edit ersetzen, speichern)
-$ git reset HEAD^
-$ git add -p
-$ git commit -m 'Erster Teil'
-$ git add -u
-$ git commit -m 'Zweiter Teil'\end{verbatim}
   }
   ;
 \end{tikzpicture}
