@@ -99,6 +99,8 @@
 
 \newcommand{\platz}{\vspace{-4.5ex}}
 \def \breiteErsteSpalte {7cm}
+\def \breiteZweiteSpalte {9cm}
+\def \breiteDritteSpalte {8.5cm}
 
 %%% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,7 +259,7 @@
 % Als Visualisierung brauchbar?
 ;
   \draw (linksoben.north west)
-  ++(7.5cm,0) node[anchor=north west,text width=9cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(7.5cm,0) node[anchor=north west,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   (zweite-spalte)
   {
     \platz
@@ -268,8 +270,10 @@
     Secret Recovery: \\
     $k = f(0) = \sum s_i \cdot l_i(0)$ \quad
     $l_i(0) := \left[\prod_{i=1,j\neq i} \frac{j}{j - i}\right] \mod p$
+    Beim Berechnen von $l_i(0)$ die Nenner zu $(a)^{-1}$ zusammenfassen und als inverses
+    Element berechnen.
   }
-  ++(0,-3.5cm) node[below right,text width=9cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-4.2cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{Erweiterter Euklidischer Algorithmus (EEA)}
@@ -293,7 +297,7 @@
     \end{scriptsize}
 
   }
-  ++(0,-2.7cm) node[below right,text width=9cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{Inverses Element $(a)^{-1}$ berechnen}
@@ -307,20 +311,45 @@
       \end{cases}
     $
   }
-  ++(0,-3.4cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Remote Repositories}
-  }
-  ++(0,-2.3cm) node[below right,text width=8.5cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \subsubsection*{Änderungen veröffentlichen}
-  }
-  % Eigene Anmerkungen
-  [anchor=north west,draw=gray,dashed,rounded corners] ++(0,-3.1cm) rectangle +(20.3cm,-2.7cm)
-  ++(0,0) node[color=gray]{Platz für eigene Anmerkungen!}
-  ;
+    \platz
+    \subsubsection*{iptables}
+    Chains: Pakete von...\\
+    \begin{tabular}{l l}
+     INPUT & Außen an System mit Firewall \\
+     FORWARD & Außen an System innerhalb  des geschützten Bereichs \\
+     OUTPUT & Innen nach Außen
+    \end{tabular}
+    Targets: \\
+    \begin{tabular}{l l}
+     ACCEPT & Akzeptieren und Weiterleiten \\
+     DROP & Verwerfen ohne Info an Absender \\
+     REJECT & Verwerfen mit Info 
+    \end{tabular}\\
+    Parameter: \\
+     \begin{tabular}{|l|l|l|}
+     \hline
+     Param & Argumente & Erklärung \\
+     \hline
+     -P & Chain Target & Policy für Chain \\
+     \hline
+     -A & Chain & Append Regel \\
+     \hline
+     -p & Protokoll & z.B. tcp, icmp \\
+     \hline
+     -j & Target & Gibt Target an\\
+     \hline
+     -F & Chain & Flush, löscht alle Regeln für Chain \\
+     \hline
+     -i/-o & Interface & in-interface bzw. out-interface \\
+     \hline
+     -dport/sport & port & Destination/Source port\\
+      \hline
+    \end{tabular}
+  };
   \draw (zweite-spalte.north west)
-  ++(9.0cm,0) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(9.50cm,0) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \subsubsection*{Weitere praktische Kommandos}
   }
@@ -330,6 +359,9 @@
   }
   ;
 \end{tikzpicture}
+
+%%% SEITE 2
+
 
 
 %%% }}}
