@@ -102,6 +102,10 @@
 \def \breiteZweiteSpalte {9cm}
 \def \breiteDritteSpalte {8.5cm}
 
+\usepackage{mathtools}
+\newcommand{\textover}[2]{\stackrel{\mathclap{\normalfont\mbox{#1}}}{#2}}
+
+
 %%% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -244,7 +248,7 @@
     Hashfunktion mit geheimen Schlüssel zur Integritätsprüfung von Nachrichten. Ermöglicht 
     kein non-repudiation, daher nicht als digitale Unterschrift geeignet.
   }
-  ++(0, -2.1cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0, -2.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsection*{Kollisionsresistenz}
@@ -328,7 +332,7 @@
      REJECT & Verwerfen mit Info 
     \end{tabular}\\
     Parameter: \\
-     \begin{tabular}{|l|l|l|}
+     \begin{tabular}{|l|l|p{0.5\textwidth}|}
      \hline
      Param & Argumente & Erklärung \\
      \hline
@@ -340,7 +344,7 @@
      \hline
      -j & Target & Gibt Target an\\
      \hline
-     -F & Chain & Flush, löscht alle Regeln für Chain \\
+     -F & Chain & Flush, löscht alle Regeln für Chain außer Standardregeln mit -P\\
      \hline
      -i/-o & Interface & in-interface bzw. out-interface \\
      \hline
@@ -351,11 +355,25 @@
   \draw (zweite-spalte.north west)
   ++(9.50cm,0) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Weitere praktische Kommandos}
+    \platz
+    \subsubsection*{Reliability}
+    Wahrscheinlichkeit, dass ein System über gewissen Zeitraum korrekt funktioniert.
+    Reihenschaltung: $R_{ges} (t) = \prod_{i=1}^n R_i$ \\
+    Falls gleiches Modell $R_i(t) = e^{-\lambda_i t}$ gilt: 
+    $R_{ges}(t) = e^{-\lambda t}$ mit $\lambda = \sum_{i=1}^n \lambda_i$
+    Parallelschaltung: $R_{ges} (t) = 1- \prod_{i=1}^n (1-R_i(t))$
   }
   ++(0,-3.5cm) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
-    \subsubsection*{Beispielhafte Programmaufrufe}
+    \platz
+    \subsubsection*{Availability}
+    Verfügbarkeit eines Systems in \%:\\
+    A=Uptime/(Downtime+Uptime) = MTTF/(MTTF+MTTR)\\
+    MTTF (Mean Time to Failure): $MTTF = \int_0^\infty R(t) dt \textover{exp}{=} \frac{1}{\lambda}$ \\
+    MTTR (Mean Time to Recovery): \\
+    Wahrscheinlichkeit $F(t)$, dass System bis $t$ fehlerhaft wird.\\
+    Exp. Modell: $F(t) = 1-e^{-\lambda t}$ \\
+    Reliability Funktion: $R(t) = 1-F(t)\quad$ exp. Modell: $R(t)= e^{-\lambda t}$ 
   }
   ;
 \end{tikzpicture}
