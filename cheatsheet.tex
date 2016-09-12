@@ -417,7 +417,110 @@
 
 %%% SEITE 2
 
+\begin{tikzpicture}
+  \draw (0,1) node[anchor=north west,font=\Huge\bf\fontfamily{phv}\selectfont]{Cheatsheet: Computersystemsicherheit}
+  (.1cm,.3cm) -- (28.2cm,.3cm)
+  ([xshift=1mm]23.7cm,.7cm)
+  node[font=\footnotesize,color=black!85,anchor=north east]{
+    \copyright{} 2016 Steffen Pegenau
+  }
+  ++(0,.3cm)
+  node[font=\footnotesize,color=black!85,anchor=north east]{
+    Version vom \today
+  }
+  ;
+  \draw
+  (0,0) node[anchor=north west,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  (linksoben)
+  {
+   \platz
+   \subsubsection*{CBC-Mode}
+  }
+  ++(0,-5.7cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{CFB-Mode}
+  }
+  ++(0,-2.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{CTR-Mode}
+  }
+  ++(0, -2.9cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Hashfunktion}
+    
+  }
+  ++(0, -2.1cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Message Authentication Code (MAC)}
+  }
+  ++(0, -2.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Kollisionsresistenz}
+  }
+  ++(0, -1.7cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsection*{Schwache Kollisionsresistenz}
+  }
+;
+  \draw (linksoben.north west)
+  ++(7.5cm,0) node[anchor=north west,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  (zweite-spalte)
+  {
+    \platz
+    \subsubsection*{Shamir Secret-Sharing}
+  }
+  ++(0,-4.2cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Erweiterter Euklidischer Algorithmus (EEA)}
 
+  }
+  ++(0,-2.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Inverses Element $(a)^{-1}$ berechnen}
+  }
+  ++(0,-2.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{iptables}
+  };
+  \draw (zweite-spalte.north west)
+  ++(9.50cm,0) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Reliability}
+  }
+  ++(0,-2.5cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Availability}
+    
+  }
+  ++(0,-3.8cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Sicherheitsziele}
+  }
+  ++(0,-3.6cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Kasiski-Test}
+  }
+  ++(0,-2.1cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{OTP -- Beweis perfekte Sicherheit}
+
+  }
+  ;
+\end{tikzpicture}
 
 %%% }}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
