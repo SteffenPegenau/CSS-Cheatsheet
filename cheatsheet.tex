@@ -174,7 +174,7 @@
 
 
 \begin{tikzpicture}
-  \draw (0,1) node[anchor=north west,font=\Huge\bf\fontfamily{phv}\selectfont]{Cheatsheet: Computersystemsicherheit}
+  \draw (0,1) node[anchor=north west,font=\Huge\fontfamily{phv}\selectfont]{Cheatsheet: Computersystemsicherheit}
   (.1cm,.3cm) -- (28.2cm,.3cm)
   ([xshift=1mm]23.7cm,.7cm)
   node[font=\footnotesize,color=black!85,anchor=north east]{
@@ -418,7 +418,7 @@
 %%% SEITE 2
 
 \begin{tikzpicture}
-  \draw (0,1) node[anchor=north west,font=\Huge\bf\fontfamily{phv}\selectfont]{Cheatsheet: Computersystemsicherheit}
+  \draw (0,1) node[anchor=north west,font=\Huge\fontfamily{phv}\selectfont]{Cheatsheet: Computersystemsicherheit}
   (.1cm,.3cm) -- (28.2cm,.3cm)
   ([xshift=1mm]23.7cm,.7cm)
   node[font=\footnotesize,color=black!85,anchor=north east]{
@@ -434,38 +434,55 @@
   (linksoben)
   {
    \platz
-   \subsubsection*{CBC-Mode}
+   \subsubsection*{Satz von Euler}
+   $n > 1 \Rightarrow a^{\phi(n)} \equiv 1(\mod n) \forall a \in \mathbb{Z}_n^*$ 
   }
-  ++(0,-5.7cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-1.3cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{CFB-Mode}
+    \subsubsection*{Spezialfall: kleiner Satz von Fermat}
+    Primzahl $p>1$ so gilt für jede Zahl $x$ mit $ggT(x,p) = 1:$ \\
+    $$x^{p-1} \equiv 1 (\mod n)$$
+    In jeder endl. Gruppe $M$ gilt: $x^{ord(M)} = 1 \forall x \in M$
   }
-  ++(0,-2.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-3cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{CTR-Mode}
+    \subsubsection*{Korrektheit von ElGamal}
+    Bekannt: $E[(g,h),m] = (c_1, c_2) := (g^k, mh^k)$ \\
+    Zu zeigen: $D(E(m)) = m \quad \forall m \in \mathbb{Z}_p^*$ \\
+    Beweis:
+    \begin{align}
+     D(E(m)) &= D(g^k, mh^k) \\
+     &\equiv mh^k \cdot (g^k)^{-a} \mod p \\
+     &\equiv mh^k \cdot g^{k(p-1-a)} \mod p \\
+     &\equiv mg^{ak} \cdot g^{k(p-1)-ak} \mod p \\
+     &\equiv m\cdot g^{k(p-1)} \mod p \\
+     &\equiv m \mod p
+    \end{align}
+
   }
-  ++(0, -2.9cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0, -5.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsection*{Hashfunktion}
-    
-  }
-  ++(0, -2.1cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \platz
-    \subsection*{Message Authentication Code (MAC)}
-  }
-  ++(0, -2.5cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \platz
-    \subsection*{Kollisionsresistenz}
-  }
-  ++(0, -1.7cm) node[below right,text width=\breiteErsteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \platz
-    \subsection*{Schwache Kollisionsresistenz}
+    \subsection*{RSA}
+    Allgemein: \\
+    \begin{tabular}{ll}
+     1. & Wähle zufällig große Primzahlen p,q \\
+     2. & Setze $n = p\cdot q$ \\
+     3. & Wähle zufällig $(e,d)$ mit \\
+	& $ed \equiv 1 mod (\phi(n))$, mit $\phi(n) = (p-1)(q-1)$
+    \end{tabular}
+    Public key: $pk = (e,n)$ \\
+    Private key: $sk = (d,n)$ \\
+    (Public und private key sind invers zueinander)
+    Ver-/Entschlüsselung: \\
+    $E(pk, m) = m^e\mod n$ \\
+    $D(sk, c) = c^d \mod n$\\
+    RSA Signatur: \\
+    $sign(sk,m) = h(m)^d \mod n$ \\
+    $verify(pk, m,s): [s^e = h(m) ?]$
+
   }
 ;
   \draw (linksoben.north west)
