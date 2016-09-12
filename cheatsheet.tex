@@ -399,6 +399,17 @@
     2. & Primfaktorzerlegung \\
     3. & Gemeinsame Faktoren entsprechen Schlüssellänge 
     \end{tabular}
+  }
+  ++(0,-2.1cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{OTP -- Beweis perfekte Sicherheit}
+    zu zeigen: $Pr[Enc(k,m_1) = c | k \textover{\$}{\leftarrow} \mathcal{K}] = Pr[Enc(k,m_2) = c | k \textover{\$}{\leftarrow} \mathcal{K}]$ \\
+    \begin{align}
+    Pr[Enc(k,m)=c| k \textover{\$}{\leftarrow} \mathcal{K}] &= Pr[m \oplus k = c | k \textover{\$}{\leftarrow} \mathcal{K}] \\
+    &= Pr[k = c \oplus m | k \textover{\$}{\leftarrow} \mathcal{K}]\\
+    &= Pr[k = k^*| k \textover{\$}{\leftarrow} \mathcal{K}] = \frac{1}{2^l}
+    \end{align}
 
   }
   ;
