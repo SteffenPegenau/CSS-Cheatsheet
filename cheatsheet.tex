@@ -100,7 +100,7 @@
 \newcommand{\platz}{\vspace{-4.5ex}}
 \def \breiteErsteSpalte {7cm}
 \def \breiteZweiteSpalte {9cm}
-\def \breiteDritteSpalte {8.5cm}
+\def \breiteDritteSpalte {11cm}
 
 \usepackage{mathtools}
 \newcommand{\textover}[2]{\stackrel{\mathclap{\normalfont\mbox{#1}}}{#2}}
@@ -353,7 +353,7 @@
     \end{tabular}
   };
   \draw (zweite-spalte.north west)
-  ++(9.50cm,0) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(9.50cm,0) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{Reliability}
@@ -363,7 +363,7 @@
     $R_{ges}(t) = e^{-\lambda t}$ mit $\lambda = \sum_{i=1}^n \lambda_i$
     Parallelschaltung: $R_{ges} (t) = 1- \prod_{i=1}^n (1-R_i(t))$
   }
-  ++(0,-3.5cm) node[below right,text width=11.0cm,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.5cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{Availability}
@@ -374,6 +374,21 @@
     Wahrscheinlichkeit $F(t)$, dass System bis $t$ fehlerhaft wird.\\
     Exp. Modell: $F(t) = 1-e^{-\lambda t}$ \\
     Reliability Funktion: $R(t) = 1-F(t)\quad$ exp. Modell: $R(t)= e^{-\lambda t}$ 
+  }
+  ++(0,-3.8cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Sicherheitsziele}
+    \begin{tabular}{lll}
+     Safety & & Betriebssicherheit, Ablauf- und Ausfallsicherheit \\
+     Security & & Angriffssicherheit \\
+      & Authenticity & Authentizität, Echtheit, Glaubwürdigkeit \\
+      & Integrity & Integrität der Daten \\
+      & Confidentiality & Vetraulichkeit, keine unautorisierte Datengewinnung \\
+      & Availability & Verfügbarkeit, keine Funktionsbeeinträchtigungen \\
+      & Non repudiation & Verbindlichkeit und Zuordenbarkeit
+    \end{tabular}
+
   }
   ;
 \end{tikzpicture}
