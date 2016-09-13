@@ -490,29 +490,54 @@
   (zweite-spalte)
   {
     \platz
-    \subsubsection*{Shamir Secret-Sharing}
+    \subsubsection*{Zeigen, dass Chiffriersystem definiert ist}
+    Zu zeigen ist: $D[E(m_1, \dots, m_n)] = m_1,\dots,m_n $
   }
-  ++(0,-4.2cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-1.5cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{Erweiterter Euklidischer Algorithmus (EEA)}
+    \subsubsection*{Ansätze zur Userauthentifizierung}
+    by knowledge (PIN, Passwort)\\
+    - free recall-based (Freies Erinnern ohne Abrufhilfe) \\
+      Draw a Secret (DAS), Android
+    - cued recall-based (Mit Abrufhilfe, Sicherheitsfrage) \\
+      PassPoints
+    - Recognition-based (Wiedererkennen) \\
+    by ownership (smart card, token, SIM)\\
+    by inherence (Biometrie, Verhalten)\\
 
   }
-  ++(0,-2.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-3.5cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{Inverses Element $(a)^{-1}$ berechnen}
-  }
-  ++(0,-2.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \platz
-    \subsubsection*{iptables}
+    \subsubsection*{Features of authentication schemes}
+    Security \\
+    - Guessability $|P| = \log_2 \sum_{l \in L} |A|^l $ \\
+      Angreifbar über: \\
+      Brute Force (Offline), Dictionary Attack (On/Offline) \\
+    - Oberservability \\
+      Angreifbar über: \\
+      Shoulder Surfing (Human Observer), Spyware (Technology) \\
+    - Recordability \\
+      Angreifbar über: \\
+      Social Engineering (Deception), Theft (Unsecured Record) \\
+    Usability \\
+    - Compatibility\\
+    - Costs \\
+    - Maturity \\
+    - Proprietary
   };
   \draw (zweite-spalte.north west)
   ++(9.50cm,0) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{Reliability}
+    \subsubsection*{Usability aspects of knowledge based authentication}
+    \begin{tabular}{l l l}
+    Effectiveness & Objective & Success-/Errorrate \\
+    Efficiency & Objective & Time needed per attempts, attempts needed \\
+    Satisfaction & Subjective & Questionnaires (SUS), Recommendations
+    \end{tabular}
+
   }
   ++(0,-2.5cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
