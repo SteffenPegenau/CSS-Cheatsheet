@@ -237,7 +237,7 @@
   {
     \platz
     \subsection*{Hashfunktion}
-    Nicht injektive Abbildung, die Urbildbildbereich auf erheblich kleineren Bildbereich abbildet.\\
+    Nicht injektive Abbildung, die Urbildbildbereich auf erheblich kleineren Bildbereich abbildet. Einwegfunktion.\\
     Speicherung von Passwörtern, Dateivalidierung
     
   }
@@ -471,7 +471,7 @@
      1. & Wähle zufällig große Primzahlen p,q \\
      2. & Setze $n = p\cdot q$ \\
      3. & Wähle zufällig $(e,d)$ mit \\
-	& $ed \equiv 1 mod (\phi(n))$, mit $\phi(n) = (p-1)(q-1)$
+	& $ed \equiv 1 mod (\varphi(n))$, mit $\varphi(n) = (p-1)(q-1)$
     \end{tabular}
     Public key: $pk = (e,n)$ \\
     Private key: $sk = (d,n)$ \\
@@ -499,15 +499,15 @@
     \subsubsection*{Ansätze zur Userauthentifizierung}
     by knowledge (PIN, Passwort)\\
     - free recall-based (Freies Erinnern ohne Abrufhilfe) \\
-      Draw a Secret (DAS), Android
+      Draw a Secret (DAS), Android \\
     - cued recall-based (Mit Abrufhilfe, Sicherheitsfrage) \\
-      PassPoints
+      PassPoints \\
     - Recognition-based (Wiedererkennen) \\
     by ownership (smart card, token, SIM)\\
     by inherence (Biometrie, Verhalten)\\
 
   }
-  ++(0,-3.5cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-4cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{Features of authentication schemes}
