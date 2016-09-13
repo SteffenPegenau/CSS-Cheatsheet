@@ -493,7 +493,7 @@
     \subsubsection*{Zeigen, dass Chiffriersystem definiert ist}
     Zu zeigen ist: $D[E(m_1, \dots, m_n)] = m_1,\dots,m_n $
   }
-  ++(0,-1.5cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-1.3cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
     \subsubsection*{Ansätze zur Userauthentifizierung}
@@ -526,7 +526,27 @@
     - Costs \\
     - Maturity \\
     - Proprietary
+  }
+  ++(0,-6.7cm) node[below right,text width=\breiteZweiteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  {
+    \platz
+    \subsubsection*{Mandatory Access Control (MAC)}
+    Systembestimmte (regelbasierte) Festlegung von Sicherheitseigenschaften, die benutzerdefinierte
+    Rechte dominieren. Bell-La Padula Modell erweitert Matrixbasiertes Zugriffskontrollsystem. \\
+    Rechte $R=\{ read, append, read-write \}$ \\
+    Sicherheitsklassen $SC = (A, B)$ mit $A$ total geordnete Sicherheitsmarken,
+    mit $B$ Menge von Kategorien/Personen. \\
+    Jedes Subjekt hat Clearance: $SC(s) \in SC$ \\
+    Jedes Objekt hat Classification: $SC(o) \in SC$ \\
+    Regeln: \\
+    - Simple-security-Property/no read up-Regel. Lesen nur erlauben, wenn \\
+      $read \in M(s,o) \land SC(s) \geq SC(o)$ \\
+    - *-Property (no write down-Regel): \\
+      A nur erlauben, falls $append \in M(s,o) \land SC(s) \leq SC(o)$ \\
+      RW nur erlauben, fall $read-write \in M(s,o) \land SC(s) = SC(o)$ \\
+    - Während Laufzeit keine Änderungen
   };
+  
   \draw (zweite-spalte.north west)
   ++(9.50cm,0) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
@@ -539,27 +559,43 @@
     \end{tabular}
 
   }
-  ++(0,-2.5cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
+  ++(0,-2.1cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{Availability}
-    
-  }
-  ++(0,-3.8cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \platz
-    \subsubsection*{Sicherheitsziele}
+    \subsubsection*{Discretionary Access Control (DAC) - Fahrschein}
+    Eigentümer bestimmt Rechte für einzelne Objekte in Matrix M\\
+    Menge von Objekten O, Subjekten S, Rechten R. \\
+    $M: S \times O \rightarrow 2^R$ \\
+    Vorteile: Einfach in Nutzung \& Implementierung, flexibel \\
+    Nachteile: dynamische Rechte schlecht abbildbar, Vergabe/Rücknahme von Rechten
+    relativ komplex \\
+    Spaltenweise Speicherung: $ACL(Datei1) = \{(Prozess1), \{read, write\}\}$
   }
   ++(0,-3.6cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
   {
     \platz
-    \subsubsection*{Kasiski-Test}
-  }
-  ++(0,-2.1cm) node[below right,text width=\breiteDritteSpalte,rounded corners,fill=gray!15,inner sep=1ex,drop shadow]
-  {
-    \platz
-    \subsubsection*{OTP -- Beweis perfekte Sicherheit}
-
+    \subsubsection*{Role-Based Access Control (RBAC)}
+    Berechtigungen für Rollen statt Nutzer, intuitiv, flexibel \\
+    Menge von Subjekten S, Rollen R, Zugriffsrechten P. \\
+    Zwei Abbildungen/Zuordnungen: \\
+    Benutzer - Rollen: $sr: S \rightarrow 2^R$ \\
+    Rolle - Rechte: $pr: R \rightarrow 2^P$ (Rolle bestimmt Rechte)\\
+    Sitzung: $session \subseteq S \times 2^R$ \\
+    Für alle Paare $(s,rl)\in session: \quad rl \subseteq sr(s)$ \\
+    $rl$: aktive Rollen von $s$\\
+    Invarianten: \\
+    $\forall s \in S: R_j \in session(s) \Rightarrow sr(s)$: \\
+    Subjekt darf nur Rollen haben, in denen es Mitglied ist \\
+    $\forall s \in S: \underline{exec(s,p)}_{\text{hat s p?}} \Rightarrow R_j \in R: R_j \in session(s) \wedge p \in pr(R_j)$: \\
+    Subjekt hat nur Rechte der aktiven Rolle \\
+    $\forall s \in S: exec(s,p) \Rightarrow \exists R_i \in R, R_i  \in session(s) \land (p \in pr(R_i) \lor \exists R_j: (\exists R_j: (R_j < R_i \wedge p \in pr(R_j))))$ \\
+    Hierarchisches Modell\\
+    Statischer Ausschluss von Rollenpaaren: $SSD \subseteq R \times R$ \\
+    $\forall R_i, R_j \in R, \forall s \in S: (s\in member(R_i) \land s\in member(R_j)) \Rightarrow (R_i, R_j) \not\in SSD$ \\
+    Dynamischer Ausschluss von Rollenpaaren: $DSD \subseteq R \times R$ \\
+    $\forall R_i, R_j \in R, \forall s \in S:$ \\ $(s\in member(R_i) \land s\in member(R_j) \land \{R_i, R_j\} \subseteq active(s))$  \\
+    $ \Rightarrow (R_i, R_j) \not\in SSD$ \\
+    $active(s) = \{R_i \vert \exists R_s \in R \land (s,R_s) \in session \land R_i \in R_s \} $
   }
   ;
 \end{tikzpicture}
